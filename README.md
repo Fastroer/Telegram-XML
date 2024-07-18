@@ -35,8 +35,8 @@ exchange_rate_bot/
 1. Клонируйте репозиторий:
 
     ```sh
-    git clone <URL вашего репозитория>
-    cd exchange_rate_bot
+    git clone https://github.com/Fastroer/Telegram-XML.git
+    cd Telegram-XML
     ```
 
 2. Создайте файл `.env` в корневой директории и добавьте ваш Telegram API токен:
