@@ -1,0 +1,30 @@
+services:
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+
+  currency_updater:
+    build:
+      context: ./currency_updater
+      dockerfile: Dockerfile
+    depends_on:
+      - redis
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    volumes:
+      - ./currency_updater:/app
+
+  bot:
+    build:
+      context: ./bot
+    depends_on:
+      - redis
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - TELEGRAM_API_TOKEN=${TELEGRAM_API_TOKEN}
+    volumes:
+      - ./bot:/app
